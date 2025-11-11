@@ -5,14 +5,14 @@ import responseTime from 'response-time'
 
 const app = express()
 
-// Connecting to redis
+// Conexion a Redis
 const client = createClient({
   url: 'redis://127.0.0.1:6379'
 })
 
 app.use(responseTime())
 
-// Handler for getting all characters
+// Handler para todos los personajes y diferentes tipos de request 
 const getAllCharacters = async (req, res, next) => {
   try {
     const cacheKey = "characters:all"
@@ -43,19 +43,19 @@ const getAllCharacters = async (req, res, next) => {
   }
 }
 
-// Get all characters (plural - RESTful)
+// Todos los personajes (plural - RESTful)
 app.get("/characters", getAllCharacters)
 
-// Alias for backward compatibility (singular)
+// Usando Alias para un solo personaje (singular)
 app.get("/character", getAllCharacters)
 
-// Handler for getting a single character by ID
+// Usando ID para un solo Personaje
 const getCharacterById = async (req, res, next) => {
   try {
     const { id } = req.params
     const cacheKey = `character:${id}`
     
-    // Check Redis cache first
+    // Al hacer la request se revisa la instancia de Redis
     const reply = await client.get(cacheKey)
 
     if (reply) {
@@ -63,13 +63,13 @@ const getCharacterById = async (req, res, next) => {
       return res.send(JSON.parse(reply))
     }
 
-    // If not in cache, fetch from API
+    // Si no esta en cache (ram), se saca de API
     console.log(`Fetching character ID: ${id} from API`)
     const { data } = await axios.get(
       `https://rickandmortyapi.com/api/character/${id}`
     )
     
-    // Save to Redis cache with 15 second expiration
+    // Guarda al Redis temporalmente, expira en 15 segundos
     const saveResult = await client.set(
       cacheKey,
       JSON.stringify(data),
@@ -89,10 +89,10 @@ const getCharacterById = async (req, res, next) => {
   }
 }
 
-// Get a single character by ID (plural - RESTful)
+// (plural - RESTful)
 app.get("/characters/:id", getCharacterById)
 
-// Alias for backward compatibility (singular)
+// (singular)
 app.get("/character/:id", getCharacterById)
 
 const main = async () => {
