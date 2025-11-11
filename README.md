@@ -1,13 +1,15 @@
-### Redis Node Caching
+### Almacenamiento en caché de Redis en Node
 
-this is a basic example of how to use Redis with nodejs as a caching system to improve response speed to the client.
+Este es un ejemplo básico de cómo usar Redis con Node.js como sistema de caché para mejorar la velocidad de respuesta al cliente.
 
-### Requirements
+### Requisitos
 
-you need to have redis installed on your system, or other possible ways to use it is trough docker:
+Necesitas tener Redis instalado en tu sistema. Otra forma de usarlo es mediante Docker:
 
-to run redis with docker:
+Para ejecutar Redis con Docker:
 
 ```shell
+
 docker run --name some-redis -p 6379:3379 -d redis
+
 ```
