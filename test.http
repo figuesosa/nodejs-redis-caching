@@ -1,6 +1,23 @@
+### Get API info
+GET http://localhost:3000/
 
-### Get all chracters
-GET http://localhost:3000/character
+### Get all characters
+GET http://localhost:3000/characters
 
-### Get character by id     
+### Get character by id
 GET http://localhost:3000/character/1
+
+### Get character by id (alternative)
+GET http://localhost:3000/characters/1
+
+### Search characters by name
+GET http://localhost:3000/characters/search/rick
+
+### Search characters by name (another example)
+GET http://localhost:3000/characters/search/morty
+
+### Get cache statistics
+GET http://localhost:3000/stats
+
+### Clear cache
+DELETE http://localhost:3000/cache
