@@ -287,8 +287,8 @@ const main = async () => {
     
     app.listen(3000, () => {
       console.log(`${colors.bright}${colors.cyan}╔════════════════════════════════════════╗${colors.reset}`)
-      console.log(`${colors.bright}${colors.cyan}║      Redis Caching Demo Server         ║${colors.reset}`)
-      console.log(`${colors.bright}${colors.cyan}║   Listening on port 3000               ║${colors.reset}`)
+      console.log(`${colors.bright}${colors.cyan}║      Redis Cache Demo Server           ║${colors.reset}`)
+      console.log(`${colors.bright}${colors.cyan}║                                        ║${colors.reset}`)
       console.log(`${colors.bright}${colors.cyan}╚════════════════════════════════════════╝${colors.reset}`)
       console.log(`\n${colors.bright}Endpoints:${colors.reset}`)
       console.log(`  ${colors.cyan}GET${colors.reset}  /characters - Get all characters`)
